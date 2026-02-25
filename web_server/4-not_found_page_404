@@ -1,18 +1,15 @@
 #!/usr/bin/env bash
-# Configures custom 404 page with a custom string
+# Configure nginx with a custom 404 page
+
 set -e
 
 apt-get update
 apt-get install -y nginx
 
-echo 'Holberton School for the win!' > /var/www/html/index.html
 
-# Custom 404 page
-cat > /var/www/html/404.html << 'EOF'
-Ceci n'est pas une page</h1>
+echo "Holberton School" > /var/www/html/index.html
 
-EOF
-
+echo "Ceci n'est pas une page" > /var/www/html/404.html
 
 cat > /etc/nginx/sites-available/default << 'EOF'
 server {
@@ -28,8 +25,9 @@ server {
         return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
     }
 
-    error_page 404.html  /;
-    location = /404.html  {
+    error_page 404 /404.html;
+
+    location = /404.html {
         internal;
     }
 
