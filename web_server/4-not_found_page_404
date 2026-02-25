@@ -9,7 +9,7 @@ mkdir -p /var/www/html
 echo 'Holberton School for the win!' > /var/www/html/index.html
 
 # Custom 404 page
-cat > /var/www/html/custom_404 << 'EOF'
+cat > /var/www/html/404.html << 'EOF'
 Ceci n'est pas une page</h1>
 
 EOF
@@ -29,8 +29,8 @@ server {
         return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
     }
 
-    error_page custom_404  /;
-    location = /custom_404  {
+    error_page 404.html  /;
+    location = /404.html  {
         internal;
     }
 
