@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Configure Nginx with custom  header
+
 sudo apt update -y
 sudo apt install -y niginx
-sudo -i
 echo "holberton school" >> /var/www/html/index.html
 echo "Ceci n'est pas une page" > /var/www/html/404.html
 
@@ -33,4 +33,6 @@ server {
 EOF
 host=$(hostname)
 sed -i "/server_name _;/a \    add_header X-Served-By $HOSTNAME;" /etc/nginx/sites-available/default
-nginx -s reload
+
+sudo nginx -t
+sudo nginx -s reload
