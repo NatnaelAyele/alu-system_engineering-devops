@@ -16,6 +16,9 @@ server {
 
     server_name _;
 
+    location / {
+        try_files $uri $uri/ =404;
+    }
     location /redirect_me {
         return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
     }
@@ -26,9 +29,6 @@ server {
         internal;
     }
 
-    location / {
-        try_files $uri $uri/ =404;
-    }
 }
 EOF
 host=$(hostname)
